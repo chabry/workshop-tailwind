@@ -4,8 +4,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Workshop Tailwind</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-200">
-    
+<body class="bg-gray-100 min-h-screen">
+    <div class="flex h-screen">
+
+        <!-- SideBar -->
+        <aside class="w-64 bg-gray-900 text-white p-6">
+            <h1 class="text-2xl font-bold">Admin Dashboard</h1>
+            <nav class="mt-4">
+                <ul class="flex flex-col gap-4">
+                    <li><a href="#" class="text-gray-300 hover:text-white">🏠 Accueil</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white">📊 Statistiques</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white">⚙️ Paramètres</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Contenu Principal-->
+        <div class="w-full p-6">
+            <!-- Header -->
+            <header class="bg-white p-4 shadow-md rounded-lg flex justify-between items-center">
+                <h2 class="text-2xl font-bold">Bienvenue, Admin!</h2>
+                <button class="bg-blue-500 shadow-md rounded-lg text-white px-4 py-2 hover:bg-blue-600">
+                    Déconnexion
+                </button>
+            </header>
+
+            <!-- Statistiques -->
+            <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                <div class="bg-white shadow-md rounded-lg p-4">
+                    <h2 class="text-xl font-semibold">Utilisateurs</h2>
+                    <p class="text-3xl text-gray-600 mt-2">1.245</p>
+                </div>
+                <div class="bg-white shadow-md rounded-lg p-4">
+                    <h2 class="text-xl font-semibold">Ventes</h2>
+                    <p class="text-3xl text-gray-600 mt-2">€5,320</p>
+                </div>
+                <div class="bg-white shadow-md rounded-lg p-4">
+                    <h2 class="text-xl font-semibold">Support Tickets</h2>
+                    <p class="text-3xl text-gray-600 mt-2">32</p>
+                </div>
+            </section>
+
+            <!-- Tableau dernières transaction -->
+            <section class="mt-6">
+                <h2 class="text-2xl font-semibold">Dernières transactions</h2>
+                <table class="bg-white w-full mt-4 shadow-md rounded-lg">
+                    <thead>
+                        <tr class="bg-gray-200 text-left">
+                            <th class="p-4">Utilisateur</th>
+                            <th class="p-4">Montant</th>
+                            <th class="p-4">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-t hover:bg-gray-200 transition-all duration-200">
+                            <td class="p-4">Chabry</td>
+                            <td class="p-4">€500</td>
+                            <td class="p-4" data-status="payé">Payé</td>
+                        </tr>
+                        <tr class="border-t hover:bg-gray-200 transition-all duration-200">
+                            <td class="p-4">Breyer</td>
+                            <td class="p-4">€5000</td>
+                            <td class="p-4" data-status="non-payé">Non payé</td>
+                        </tr>
+                        <tr class="border-t hover:bg-gray-200 transition-all duration-200">
+                            <td class="p-4">Hermione</td>
+                            <td class="p-4">€500</td>
+                            <td class="p-4" data-status="en-attente">En attente</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </div>
 </body>
+<script>document.querySelectorAll('td[data-status]').forEach(td => {
+    const status = td.dataset.status;
+
+    if (status === "payé") td.classList.add('text-green-500');
+    else if (status === "en-attente") td.classList.add('text-yellow-500');
+    else td.classList.add('text-red-500');
+});</script>
 </html>
